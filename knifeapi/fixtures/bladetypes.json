@@ -1,0 +1,30 @@
+[
+    {
+        "model": "knifeapi.bladetype",
+        "pk": 1,
+        "fields": {
+            "type": "fixed_blade"
+        }
+    },
+    {
+        "model": "knifeapi.bladetype",
+        "pk": 2,
+        "fields": {
+            "type": "folder"
+        }
+    },
+    {
+        "model": "knifeapi.bladetype",
+        "pk": 3,
+        "fields": {
+            "type": "balisong"
+        }
+    },
+    {
+        "model": "knifeapi.bladetype",
+        "pk": 4,
+        "fields": {
+            "type": "other"
+        }
+    }
+]

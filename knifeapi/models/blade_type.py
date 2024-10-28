@@ -1,3 +1,5 @@
+# knifeapi/models/blade_type.py
+
 from django.db import models
 
 
@@ -14,9 +16,8 @@ class BladeType(models.Model):
         (OTHER, "Other"),
     ]
 
+    # Field name should be `type`
     type = models.CharField(max_length=20, choices=TYPE_CHOICES, default=OTHER)
 
     def __str__(self):
-        return (
-            self.get_type_display()
-        )  # Returns the human-readable name of the selected choice
+        return self.get_type_display()
