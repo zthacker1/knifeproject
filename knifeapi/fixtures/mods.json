@@ -1,0 +1,37 @@
+[
+    {
+        "model": "knifeapi.mod",
+        "pk": 1,
+        "fields": {
+            "mod_type": "blade"
+        }
+    },
+    {
+        "model": "knifeapi.mod",
+        "pk": 2,
+        "fields": {
+            "mod_type": "handle"
+        }
+    },
+    {
+        "model": "knifeapi.mod",
+        "pk": 3,
+        "fields": {
+            "mod_type": "hardware"
+        }
+    },
+    {
+        "model": "knifeapi.mod",
+        "pk": 4,
+        "fields": {
+            "mod_type": "accessories"
+        }
+    },
+    {
+        "model": "knifeapi.mod",
+        "pk": 5,
+        "fields": {
+            "mod_type": "other"
+        }
+    }
+]

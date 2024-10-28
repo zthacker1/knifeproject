@@ -1,0 +1,38 @@
+[
+    {
+        "model": "knifeapi.knife",
+        "pk": 1,
+        "fields": {
+            "userId": 1,
+            "name": "Chef's Knife",
+            "price": 50,
+            "bladeTypeId": 1,
+            "description": "A versatile chef's knife for everyday cooking.",
+            "mods": [1, 2]
+        }
+    },
+    {
+        "model": "knifeapi.knife",
+        "pk": 2,
+        "fields": {
+            "userId": 2,
+            "name": "Hunting Knife",
+            "price": 80,
+            "bladeTypeId": 2,
+            "description": "A durable knife designed for outdoor and hunting use.",
+            "mods": [3]
+        }
+    },
+    {
+        "model": "knifeapi.knife",
+        "pk": 3,
+        "fields": {
+            "userId": 1,
+            "name": "Butterfly Knife",
+            "price": 120,
+            "bladeTypeId": 3,
+            "description": "A stylish balisong knife with smooth flipping action.",
+            "mods": [2, 3, 4]
+        }
+    }
+]
