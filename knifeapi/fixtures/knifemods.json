@@ -1,0 +1,50 @@
+[
+    {
+        "model": "knifeapi.knifemod",
+        "pk": 1,
+        "fields": {
+            "knifeId": 1,
+            "modId": 1
+        }
+    },
+    {
+        "model": "knifeapi.knifemod",
+        "pk": 2,
+        "fields": {
+            "knifeId": 1,
+            "modId": 2
+        }
+    },
+    {
+        "model": "knifeapi.knifemod",
+        "pk": 3,
+        "fields": {
+            "knifeId": 2,
+            "modId": 3
+        }
+    },
+    {
+        "model": "knifeapi.knifemod",
+        "pk": 4,
+        "fields": {
+            "knifeId": 3,
+            "modId": 2
+        }
+    },
+    {
+        "model": "knifeapi.knifemod",
+        "pk": 5,
+        "fields": {
+            "knifeId": 3,
+            "modId": 3
+        }
+    },
+    {
+        "model": "knifeapi.knifemod",
+        "pk": 6,
+        "fields": {
+            "knifeId": 3,
+            "modId": 4
+        }
+    }
+]
