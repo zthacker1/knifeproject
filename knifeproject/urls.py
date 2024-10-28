@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+from knifeapi.views import UserViewSet
 from knifeapi.views import KnifeView
+
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"knives", KnifeView, "knife")

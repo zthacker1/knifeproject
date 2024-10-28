@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Type(models.Model):
+class BladeType(models.Model):
     FIXED_BLADE = "fixed_blade"
     FOLDER = "folder"
     BALISONG = "balisong"
