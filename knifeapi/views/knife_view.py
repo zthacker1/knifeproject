@@ -1,17 +1,22 @@
 from rest_framework.viewsets import ViewSet
+from rest_framework import status, permissions, serializers
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import serializers
-from ..models import Knife
+from ..models import Knife, BladeType, Mod
 
 
 class KnifeSerializer(serializers.ModelSerializer):
-    # Nested serializers for foreign key and many-to-many fields
-    blade_type = serializers.StringRelatedField(source="bladeTypeId", read_only=True)
-    mods = serializers.StringRelatedField(many=True)  # List of mods by name
+    # Make `bladeTypeId` and `mods` fields writable by accepting their primary keys
+    bladeTypeId = serializers.PrimaryKeyRelatedField(queryset=BladeType.objects.all())
+    mods = serializers.PrimaryKeyRelatedField(queryset=Mod.objects.all(), many=True)
+
+    class Meta:
+        model = Knife
+        fields = ["id", "userId", "name", "price", "bladeTypeId", "description", "mods"]
+        # No need for `depth=1` here since fields are managed explicitly
 
 
 class KnifeView(ViewSet):
+    permission_classes = [permissions.AllowAny]
     """
     A ViewSet for listing, retrieving, creating, updating, and deleting Knife instances.
     """
@@ -20,7 +25,6 @@ class KnifeView(ViewSet):
         """Get a list of all knives."""
         knives = Knife.objects.all()
         serializer = KnifeSerializer(knives, many=True)
-
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
@@ -38,7 +42,9 @@ class KnifeView(ViewSet):
         """Create a new knife."""
         serializer = KnifeSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            knife = serializer.save()
+            # Set the many-to-many `mods` field after saving the instance
+            knife.mods.set(serializer.validated_data["mods"])
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -48,7 +54,10 @@ class KnifeView(ViewSet):
             knife = Knife.objects.get(pk=pk)
             serializer = KnifeSerializer(knife, data=request.data, partial=True)
             if serializer.is_valid():
-                serializer.save()
+                knife = serializer.save()
+                # Update many-to-many field if `mods` is included in the request
+                if "mods" in serializer.validated_data:
+                    knife.mods.set(serializer.validated_data["mods"])
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Knife.DoesNotExist:
@@ -66,8 +75,3 @@ class KnifeView(ViewSet):
             return Response(
                 {"message": "Knife not found"}, status=status.HTTP_404_NOT_FOUND
             )
-
-    class Meta:
-        model = Knife
-        fields = ["id", "userId", "name", "price", "blade_type", "description", "mods"]
-        depth = 1  # Expands the `mods` field to show related details if necessary
